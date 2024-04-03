@@ -1,0 +1,11 @@
+{
+	"name": "CacheUtil",
+	"file": "cache",
+	"enable": false,
+	"requires": [
+		"Utility",
+		"DateUtil",
+		"Converter"
+	],
+	"des":"hõ trợ lưu cache SessionStorage và LocalStorage với expire time"
+}

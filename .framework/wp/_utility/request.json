@@ -1,0 +1,7 @@
+{
+	"name": "RequestUtil",
+	"file": "request",
+	"enable": false,
+	"requires": [],
+	"des":"Gọi request sử dụng fetch"
+}

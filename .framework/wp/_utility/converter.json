@@ -1,0 +1,7 @@
+{
+	"name": "Converter",
+	"file": "converter",
+	"enable": false,
+	"requires": [],
+	"des":"Convert dữ liệu, serialize hoặc deserialize,..."
+}

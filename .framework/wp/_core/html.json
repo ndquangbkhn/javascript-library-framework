@@ -1,0 +1,6 @@
+{
+	"name":"HTMLUtil",
+	"file":"core",
+	"enable": true,
+	"des": "Xử lý đọc template. Mặc định enable"
+}

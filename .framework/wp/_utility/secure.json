@@ -1,0 +1,7 @@
+{
+	"name":"Secure",
+	"file": "secure",
+	"enable": false,
+	"requires": [],
+	"des":"Xử lý text chống tấn công XSS trước khi bind html"
+}

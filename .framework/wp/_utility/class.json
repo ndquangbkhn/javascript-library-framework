@@ -1,0 +1,7 @@
+{
+	"name": "Class",
+	"file": "class",
+	"enable": false,
+	"requires": [],
+	"des":"Định nghĩa class, cho phép kế thừa"
+}

@@ -1,0 +1,6 @@
+"define webpack";
+
+
+
+
+exports["default"] = {};
