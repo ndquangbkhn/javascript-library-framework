@@ -36,7 +36,8 @@ const htmlMinOption = {
 };
 
 
-const bundleConfig = JSON.parse(readFile('bundleconfig.json'));
+const APP_CONFIG_PATH = path.join(DIR_NAME, "bundleconfig");
+const bundleConfig = JSON.parse(readFile(path.join(APP_CONFIG_PATH,'bundleconfig.json')));
 
 //Bản build
 const BUILD_VERSION = bundleConfig.version ? "-" + bundleConfig.version : "";
@@ -59,18 +60,20 @@ const CSS_PREFIX = bundleConfig.cssprefix ? bundleConfig.cssprefix : (function (
 
 
 
-const WEBPACK_CONFIG = path.join(DIR_NAME, "webpackconfig");
 const DIST_PATH = path.join(DIR_NAME, "dist");
+const DIST_SRC_PATH = path.join(DIST_PATH, "src");
+
 const APP_PATH = path.join(DIR_NAME, "app");
 const CORE_WEBPACK_PATH = path.join(DIR_NAME, ".framework/wp");
 
 const SOURCE_PATH = path.join(APP_PATH, "src");
-const ASSETS_PATH = path.join(APP_PATH, "assets");
-const CONFIG_PATH = path.join(APP_PATH, "config");
-const DATA_PATH = path.join(APP_PATH, "data");
-const CULTURE_PATH = path.join(APP_PATH, "culture");
-const BUILD_PATH = path.join(ASSETS_PATH, "build");
+const CONFIG_PATH = path.join(SOURCE_PATH, "config");
+const DATA_PATH = path.join(SOURCE_PATH, "data");
+const CULTURE_PATH = path.join(SOURCE_PATH, "culture");
 const WEBPACK_PATH = path.join(SOURCE_PATH, "webpack");
+
+const ASSETS_PATH = path.join(APP_PATH, "assets");
+
 
 
 const AUTOGEN_PATH = path.join(SOURCE_PATH, "_autogen");
@@ -104,7 +107,7 @@ let default_webpacks_enable = {};
 let dependences = [];
 
 
-let webpack_map = JSON.parse(readFile(path.join(WEBPACK_CONFIG, "webpack.map.json"), 'utf-8'));
+let webpack_map = JSON.parse(readFile(path.join(WEBPACK_PATH, "webpack.json"), 'utf-8'));
 
 var webpackTemplate = readFile(path.join(DIR_NAME, ".framework/webpack.tpl"));
 
@@ -361,7 +364,7 @@ function generateJS(cb) {
 		.replaceAll("FRAMEWORK_INIT_SCRIPT", tempResource);
 
 
-	let licenseInfo = readFile(path.join(DIR_NAME, "License.tpl"), 'utf-8');
+	let licenseInfo = readFile(path.join(APP_CONFIG_PATH, "license.tpl"), 'utf-8');
 	licenseInfo = licenseInfo.replaceAll("{LibraryName}", bundleConfig.libraryName)
 		.replaceAll("{Description}", bundleConfig.description)
 		.replaceAll("{Year}", (new Date()).getFullYear());
@@ -379,19 +382,18 @@ function generateJS(cb) {
 		.pipe(replace(REPLACE_CSS_PREFIX, CSS_PREFIX))
 		//binding license info to head
 		.pipe(header(licenseInfo))
-		.pipe(gulp.dest(BUILD_PATH))
+		.pipe(gulp.dest(DIST_SRC_PATH))
 		//minify
 		.pipe(uglify())
 		//binding license info to head
 		.pipe(header(licenseInfo))
 		//đổi tên thành file min.js
 		.pipe(rename({ extname: '.min.js' }))
-		.pipe(gulp.dest(BUILD_PATH))
+		.pipe(gulp.dest(DIST_SRC_PATH))
 		.on("end", function () {
+ 			fse.remove(AUTOGEN_PATH);
 			cb();
 		});
-
-
 }
 
 function generateCSS(cb) {
@@ -399,13 +401,14 @@ function generateCSS(cb) {
 		console.log("==== Style config ===");
 		console.log(CSS_FILES);
 		gulp.src(CSS_FILES)
-			.pipe(cleanCSS({ rebaseTo: BUILD_PATH }))
+			.pipe(cleanCSS({ rebaseTo: path.join(SOURCE_PATH) }))
 			.pipe(concat(CSS_OUTPUT_NAME))
 			.pipe(replace(REPLACE_CSS_PREFIX, CSS_PREFIX))
-			.pipe(gulp.dest(BUILD_PATH))
+			.pipe(gulp.dest(DIST_SRC_PATH))
 			.pipe(rename({ extname: '.min.css' }))
-			.pipe(gulp.dest(BUILD_PATH))
+			.pipe(gulp.dest(DIST_SRC_PATH))
 			.on("end", function () {
+				
 				cb();
 			});
 	} else {
@@ -442,13 +445,12 @@ function matchDependences(str) {
 
 }
 function cleanOutput(cb) {
-	fse.emptyDirSync(BUILD_PATH);
-	fse.emptyDirSync(DIST_PATH);
+ 	fse.emptyDirSync(DIST_PATH);
 	cb();
 }
-function publish(cb) {
-	fse.copySync(path.join(BUILD_PATH), path.join(DIST_PATH, "src"));
-	fse.copySync(path.join(ASSETS_PATH, "img"), path.join(DIST_PATH, "img"));
+function copyAssets(cb) {
+ 
+	fse.copySync(ASSETS_PATH, path.join(DIST_PATH, "assets"));
 
 	cb();
 }
@@ -471,11 +473,10 @@ function readDir(dir) {
 let cleanTask = gulp.series(cleanOutput);
 
 //build test. 
-let buildTask = gulp.series(cleanOutput, gulp.parallel(generateCSS, gulp.series(loadSource, gulp.parallel(bundleCoreJS, bundleAppJS), bundleJS, generateJS)));
+let buildTask = gulp.series(cleanOutput, copyAssets, gulp.parallel(generateCSS, gulp.series(loadSource, gulp.parallel(bundleCoreJS, bundleAppJS), bundleJS, generateJS)));
 
 exports.default = buildTask;
 exports.clean = cleanTask;
-exports.release= gulp.series(buildTask, publish);
 exports.build = buildTask;
 
  
