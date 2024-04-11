@@ -1,0 +1,7 @@
+{
+	"name":"DOMUtil",
+	"file": "dom",
+	"enable": true,
+	"requires": ["Utility"],
+	"des":"Xử lý dom"
+}

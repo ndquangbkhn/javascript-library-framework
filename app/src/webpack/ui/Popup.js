@@ -1,6 +1,7 @@
 "define webpack";
 
+let popupUI = function(){
 
+}
 
-
-exports["default"] = {};
+exports["default"] = popupUI;

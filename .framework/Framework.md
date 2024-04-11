@@ -8,6 +8,10 @@ Thư mục chứa code của framework.
 - Các file template chứa đoạn mã định nghĩa cho webpack, moduel factory,...
 - Các core-webpack như utility, date, secure,...
 
+### .framework/wp/wepack.core.md
+Tự động sinh mỗi khi build,lưu thông tin tất cả webpack core đang có
+
+
 ## .release
 Thư mục lưu bản phát hành, tài liệu
 
@@ -58,33 +62,7 @@ Chứa các modules nodejs. DEV không sử dụng
 ## webpackconfig
 Cấu hình webpack cho ứng dụng.
 
-### webpackconfig/_autogen
-Chứa thông tin toàn bộ các webpack có sẵn của framework.
-```js
-//Convert dữ liệu, serialize hoặc deserialize,...
-Converter=false;
 
-//Xử lý dữ liệu kiểu Date
-DateUtil=false;
-```
-
-Các webpack mặc định được load thì có giá trị là true.
-DEV sửa dụng webpack nào thì lấy tên và config lại trong file webpack.core.json
-
-### webpack.core.json
-File cấu hình sử dụng **webpack core** nào của framework
-
-```json
-{
-    "DateUtil": true,
-    "Converter": true
-}
-```
-
-Tên **webpack core** có thể xem trong file:
-```
-webpackconfig/_autogen/webpack.core.default.js
-```
 
 ### webpack.map.json
 File cấu hình sử dụng webpack của project
@@ -103,6 +81,26 @@ File cấu hình sử dụng webpack của project
 ## bundleconfig.json
 Cấu hình phiên bản, tên file output, tên module,..
 
+Ví dụ:
+
+```json
+{
+    "global": "MISATestLibrary",
+    "version": "1.0.0",
+    "libraryName":"MISA.Test.Libary",
+    "description": "Thư viện cung cấp giao diện hiển thị tính năng test abc",
+    "output": "misa.testlibrary",
+    "cssprefix":"misa-lib"
+}
+```
+
+Trong đó:
+- global: Tên biến toàn cục để truy cập sử dụng thư viện
+- version: phiên bản phát hành. Gắn vào đuôi file
+- libraryName: Tên của thư viện, để merge vào license-header trong file .min.js
+- description: Mô tả chức năng thư viện, để merge vào license-header trong file .min.js
+- output: Tên file phát hành
+- cssprefix: tiền tố cho selector css. Tất cả chuỗi "cssprefix" trong thư viện cả css và js được replace theo config này. Nếu không config thì sinh chuỗi ngẫu nhiên
 
 
 # 3. Thi công
@@ -216,8 +214,8 @@ Thêm file .html vào thư mục app/src/template/ theo cấu trúc {file_name}.
 Ví dụ thêm file Popup.html
 
 ```html
-<div class='your-module-popup' res-title='Popup_Title'>
-    <div class='your-module-header' >
+<div class='cssprefix-module-popup' res-title='Popup_Title'>
+    <div class='cssprefix-module-header' >
         <label res-key='Popup_Caption'></label>
         <input res-placeholder="Popup_InputPlaceholder"/>
     </div>

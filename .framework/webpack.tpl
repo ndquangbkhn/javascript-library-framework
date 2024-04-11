@@ -1,8 +1,8 @@
 ;(function (factory) {
     factory();
 })(function () {
-    $webpack['{0}'] = function(exports){
+   __initWebpack('{0}', function(exports){
         {1}
-    }
+    })
 });
 

@@ -1,0 +1,7 @@
+{
+    "name": "ScreenUtil",
+    "file": "screen",
+    "enable": false,
+    "requires": [],
+    "des": "Thư viện show một element full màn hình"
+}
