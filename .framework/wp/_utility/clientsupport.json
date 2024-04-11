@@ -1,0 +1,7 @@
+{
+	"name": "ClientSupport",
+	"file": "clientsupport",
+	"enable": false,
+	"requires": [],
+	"des":"Thư viện kiểm tra OS, kiểm tra phải đang sử dụng trên thiết bị mobile hay không"
+}

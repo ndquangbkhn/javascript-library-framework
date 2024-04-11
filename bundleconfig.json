@@ -1,5 +1,8 @@
 {
-    "global": "TestLibrary",
+    "global": "NDQuangLibrary",
     "version": "1.0.0",
-    "output": "testlibrary"
+    "libraryName":"My.Test.Libary",
+    "description": "Thư viện cung cấp giao diện hiển thị tính năng test abc",
+    "output": "ndquang.testlibrary",
+    "cssprefix":"ndquang-lib"
 }

@@ -1,0 +1,7 @@
+{
+	"name":"CheckBox",
+	"file": "checkbox",
+	"enable": false,
+	"requires": [],
+	"des":"Control check box hoặc radio"
+}

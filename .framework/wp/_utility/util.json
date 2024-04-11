@@ -1,7 +1,7 @@
 {
 	"name":"Utility",
 	"file": "util",
-	"enable": false,
+	"enable": true,
 	"requires": [],
 	"des":"Các check dữ liệu isValue, isFn, isNull,..."
 }

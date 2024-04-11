@@ -1,0 +1,195 @@
+﻿/*scroll trên firefox*/
+.misa-testlib-scroller {
+    scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.1);
+    scrollbar-width: thin;
+}
+
+.misa-testlib-scroller:hover {
+    scrollbar-color: rgba(0, 0, 0, 0.5);
+}
+
+.misa-testlib-scroller:active {
+    scrollbar-color: rgba(0, 0, 0, 0.6);
+}
+
+.misa-testlib-scroller::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.misa-testlib-scroller::-webkit-scrollbar:hover {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.misa-testlib-scroller::-webkit-scrollbar:active {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.misa-testlib-scroller::-webkit-scrollbar-track-piece {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 8px;
+    border-radius: 4px;
+}
+
+.misa-testlib-scroller::-webkit-scrollbar-track-piece:hover,
+.misa-testlib-scroller::-webkit-scrollbar-track-piece:active {
+    width: 8px;
+    border-radius: 4px;
+}
+
+.misa-testlib-scroller::-webkit-scrollbar-thumb:vertical {
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 4px;
+}
+
+.misa-testlib-scroller::-webkit-scrollbar-thumb:vertical:hover {
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 8px;
+}
+
+.misa-testlib-scroller::-webkit-scrollbar-thumb:vertical:hover {
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 8px;
+}
+
+/* width */
+.misa-testlib-dialog ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+.misa-testlib-dialog ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Handle */
+.misa-testlib-dialog ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.4);
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.misa-testlib-dialog ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.misa-testlib-dialog ::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+
+.misa-testlib-hidden {
+    display: none !important;
+}
+
+.misa-testlib-column {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+}
+
+.misa-testlib-row {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+
+.misa-testlib-flex {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.misa-testlib-dialog-header .misa-testlib-btn {
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+}
+
+.misa-testlib-dialog-header .misa-testlib-btn:hover {
+    background-color: #2f87d8;
+    cursor: pointer;
+}
+
+.misa-testlib-btn::before {
+    height: 20px;
+    width: 20px;
+    content: "";
+    display: block;
+    margin: 8px;
+}
+
+.misa-testlib-btn-close::before {
+    background-image: url(../../../assets/img/close-button-white.svg);
+}
+
+.misa-testlib-btn-history::before {
+    background-image: url(../../../assets/img/icon-history.svg);
+}
+
+.misa-testlib-dialog {
+    font-size: 14px;
+    position: fixed;
+    right: 0;
+    width: 360px;
+    height: 100vh;
+    background: #eee;
+    top: 0;
+    z-index: 999;
+}
+
+.misa-testlib-dialog::before {
+    content: "";
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: calc(100vw - 360px);
+    background: rgba(0, 0, 0, 0.1);
+    left: 0;
+    top: 0;
+}
+
+.misa-testlib-dialog.misa-testlib-hidden+.misa-testlib-dialog-modal {
+    display: none;
+}
+
+.misa-testlib-dialog-header {
+    background: #187ad4;
+    line-height: 48px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.misa-testlib-dialog-title {
+    font-size: 16px;
+    color: white;
+    padding-left: 16px;
+}
+
+.misa-testlib-version {
+    color: #fff;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.4);
+    border-width: 1px;
+    border-radius: 4px;
+    height: 20px;
+    padding: 0 6px;
+    margin-left: 8px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+
+.misa-testlib-dialog-body {
+    overflow-y: auto;
+    overflow-y: overlay;
+    padding: 20px 20px 0;
+}
