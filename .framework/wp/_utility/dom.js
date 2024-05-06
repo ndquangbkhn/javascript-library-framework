@@ -3,9 +3,6 @@
 const Utility = webpack("Utility");
 
 const TemplateContainer = document.createElement("template");
-
-
-
 function init() {
     return {
         addClass: function (el, cls) {
@@ -38,14 +35,6 @@ function init() {
             }
             return this;
         },
-        fadeOut: function (el, delay) {
-            el.style.display = "none";
-            return this;
-        },
-        fadeIn: function (el, delay) {
-            el.style.display = "block";
-            return this;
-        },
         show: function (el, displayType) {
             if (!displayType) {
                 displayType = "block";
@@ -54,6 +43,82 @@ function init() {
 
             return this;
         },
+        fadeOut: function (element, duration) {
+            // Set the initial opacity to 1
+            element.style.opacity = 1;
+            element.style.transition = `opacity ${duration}ms ease-in-out`;
+
+            // Fade out the element
+            element.style.opacity = 0;
+
+            // After the fade-out duration, hide the element and set its display to 'none'
+            setTimeout(() => {
+                element.style.display = 'none';
+                element.style.opacity = 1; // Reset opacity to 1 for the next time it's shown
+                element.style.transition = "";
+                element.style.transform = "";
+            }, duration);
+            return this;
+        },
+        fadeIn: function (element, duration) {
+            element.style.opacity = 0;
+            element.style.transition = `opacity ${duration}ms ease-in-out`;
+
+            if (element.style.display == "none") {
+                element.style.display = "";
+            }
+            if (element.style.transform == 'scale(0)') {
+                element.style.transform = "";
+            }
+
+
+            setTimeout(() => {
+                element.style.opacity = 1;
+                setTimeout(function () {
+                    element.style.transition = "";
+                    element.style.transform = "";
+                }, duration)
+            }, 10);
+            return this;
+        },
+        zoomOut: function (element, duration) {
+            element.style.transform = 'scale(1)';
+            element.style.transition = `transform ${duration}ms ease-in-out`;
+
+            setTimeout(() => {
+                element.style.transform = 'scale(0)';
+                setTimeout(function () {
+                    element.style.display = "none";
+                    element.style.transition = "";
+                    element.transform = "";
+                }, duration)
+            }, 10);
+
+            return this;
+        },
+        zoomIn: function (element, duration) {
+            element.style.transform = 'scale(0.5)';
+            element.style.transition = `transform ${duration}ms ease-in-out`;
+
+            if (element.style.display == "none") {
+                element.style.display = "";
+            }
+            if (element.style.opacity == 0) {
+                element.style.opacity = 1;
+            }
+
+
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+                setTimeout(function () {
+                    element.style.transition = "";
+                    element.style.transform = "";
+                }, duration)
+            }, 10);
+
+            return this;
+        },
+
         attr: function (el, attributes, value) {
             if (typeof attributes == "object") {
                 Object.keys.forEach(key => {
@@ -98,11 +163,11 @@ function init() {
                 }
             }
         },
-        append: function(parent,...children){
+        append: function (parent, ...children) {
             parent.append(...children);
             return this;
         },
-        prepend: function(parent,...children){
+        prepend: function (parent, ...children) {
             parent.prepend(...children);
             return this;
         },
