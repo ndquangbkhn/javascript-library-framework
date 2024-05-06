@@ -1,12 +1,17 @@
 
 "define webpack";
+const DEFAULT_HEADER = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+};
 
 function init() {
     return {
         post: function (url, headers, param, callback, onError, onException) {
+            if(!headers) headers = {};
             let option = {
                 method: "Post",
-                headers: headers,
+                headers: Object.assign({}, DEFAULT_HEADER, headers),
                 body: param ? JSON.stringify(param) : null
             };
 
@@ -21,7 +26,7 @@ function init() {
                     throw Error(res.statusText);
                 }
             }).then(res => {
-                if(typeof callback == "function") callback(res);
+                if (typeof callback == "function") callback(res);
             }).catch(function (err) {
                 if (typeof onException == "function") {
                     onException(ex);
@@ -29,8 +34,8 @@ function init() {
                 console.log("Fetch Error", err);
             });
         },
-        get: function (url, headers, param, callback,  onError,onException) {
-    
+        get: function (url, headers, param, callback, onError, onException) {
+            if(!headers) headers = {};
             if (param) {
                 if (url.indexOf("/") == 0) url = location.origin + url;
                 let fullURL = new URL(url);
@@ -43,7 +48,7 @@ function init() {
 
             let option = {
                 method: "Get",
-                headers: headers
+                headers: Object.assign({}, DEFAULT_HEADER, headers),
             };
 
             fetch(
@@ -57,7 +62,7 @@ function init() {
                     throw Error(res.statusText);
                 }
             }).then(res => {
-                if(typeof callback == "function") callback(res);
+                if (typeof callback == "function") callback(res);
             }).catch(function (err) {
                 if (typeof onException == "function") {
                     onException(ex);

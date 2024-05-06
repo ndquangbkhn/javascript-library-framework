@@ -1,0 +1,9 @@
+{
+	"name": "HTMLEffect",
+	"file": "html-effect",
+	"enable": false,
+	"requires": [
+		
+	],
+	"des":"Xử lý hiệu ứng trên giao diện như drag, transform"
+}

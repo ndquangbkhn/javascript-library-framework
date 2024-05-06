@@ -1,0 +1,7 @@
+{
+	"name":"KeyEvents",
+	"file": "key-events",
+	"enable": false,
+	"requires": [],
+	"des":"Xử lý sự kiện nhấn phím"
+}

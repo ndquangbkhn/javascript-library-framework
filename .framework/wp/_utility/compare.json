@@ -1,0 +1,7 @@
+{
+	"name":"CompareHelper",
+	"file": "compare",
+	"enable": true,
+	"requires": [],
+	"des":"Chứa các hàm dùng để so sánh"
+}

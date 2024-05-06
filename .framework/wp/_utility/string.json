@@ -1,0 +1,7 @@
+{
+	"name": "StringFn",
+	"file": "string",
+	"enable": false,
+	"requires": [],
+	"des":"Xử lý text"
+}

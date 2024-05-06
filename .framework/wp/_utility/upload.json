@@ -1,0 +1,7 @@
+{
+	"name": "UploadFile",
+	"file": "upload",
+	"enable": false,
+	"requires": [],
+	"des":"Upload file to server"
+}

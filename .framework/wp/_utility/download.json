@@ -1,0 +1,7 @@
+{
+	"name": "DownloadFn",
+	"file": "download",
+	"enable": false,
+	"requires": [],
+	"des":"download from url"
+}
