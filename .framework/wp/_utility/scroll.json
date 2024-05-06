@@ -1,0 +1,7 @@
+{
+	"name":"ScrollUtil",
+	"file": "scroll",
+	"enable": true,
+	"requires": [],
+	"des":"Xử lý dom"
+}

@@ -1,0 +1,7 @@
+{
+	"name":"Clipboard",
+	"file": "clipboard",
+	"enable": false,
+	"requires": [],
+	"des":"Copy text vào clipboard"
+}
